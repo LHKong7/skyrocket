@@ -1,5 +1,9 @@
 const { minDistance } = require('../dynamic_programming/lc_72_editDistance.js');
 
+test('return one of the words length when there is an empty string', () => {
+    expect(minDistance('abc', '')).toBe(3);
+});
+
 test('returns 0 for identical words', () => {
     expect(minDistance('abc', 'abc')).toBe(0);
 });
