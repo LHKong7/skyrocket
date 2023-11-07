@@ -4,12 +4,17 @@
   "description": "JavaScript leetcode progress",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --collectCoverage",
+    "test:watch": "jest --watchAll"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^29.7.0"
+    "@babel/cli": "^7.23.0",
+    "@babel/core": "^7.23.2",
+    "@babel/preset-env": "^7.23.2",
+    "jest": "^29.7.0",
+    "typescript": "^5.2.2"
   }
 }
