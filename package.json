@@ -4,7 +4,7 @@
   "description": "JavaScript leetcode progress",
   "main": "index.js",
   "scripts": {
-    "test": "jest --collectCoverage",
+    "test": "jest",
     "test:watch": "jest --watchAll",
     "coverage:report": "node ./live-server.js"
   },
