@@ -3,19 +3,21 @@
  * @param {number} k
  * @return {void} Do not return anything, modify nums in-place instead.
  */
-const rotate = function(nums, k) {
+var rotate = function(nums, k) {
     if (!nums) {
         return nums;
     }
-
     const n = nums.length;
+    k = k % n; // 防止k大于数组长度
     const res = new Array(n).fill(undefined);
     for (let i = 0; i < n; i++) {
-        const rotatedIdx = (i + k) % n;
-        res[rotatedIdx] = nums[i];
+        let nextIdx = (i + k) % n;
+        res[nextIdx] = nums[i];
     }
 
-    return res;
+    for (let i = 0; i < n; i++) {
+        nums[i] = res[i];
+    }
 };
 
 /**
@@ -43,6 +45,36 @@ var rotate_inPlace = function(nums, k) {
             curr = nextIdx;
             count++;
         } while (start !== curr)
+    }
+};
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var rotate_inPlace2 = function(nums, k) {
+    if (!nums) {
+        return nums;
+    }
+    const n = nums.length;
+    k = k % n; // 防止k大于数组长度
+    let startIdx = 0;
+    let count = 0;
+
+    while (count < n) {
+        let currIdx = startIdx
+        let prevNum = nums[startIdx];
+        do {
+            const nextIdx = (currIdx + k) % n;
+            const nextNum = nums[nextIdx]; // the temp number
+            nums[nextIdx] = prevNum;
+
+            prevNum = nextNum;
+            currIdx = nextIdx;
+            count++;
+        } while (currIdx !== startIdx);
+        startIdx++;
     }
 };
 
