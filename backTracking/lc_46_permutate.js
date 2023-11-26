@@ -54,3 +54,30 @@ var permute_inplace = function(nums) {
     dfs(0);
     return res;
 };
+
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var permute_v1 = function(nums) {
+    const n = nums.length;
+    const hasSeen = new Array(n).fill(false);
+    const res = [];
+    const dfs = (routes, startIndex) => {
+        if (routes.length === n) {
+            res.push([...routes]);
+        }
+
+        for (let i = 0; i < n; i++) {
+            if (hasSeen[i]) continue;
+            routes.push(nums[i]);
+            hasSeen[i] = true;
+            dfs(routes);
+            routes.pop();
+            hasSeen[i] = false;
+        }
+    }
+
+    dfs([], 0);
+    return res;
+};
