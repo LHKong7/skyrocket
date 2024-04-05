@@ -35,25 +35,27 @@ var permute = function(nums) {
  * @param {number[]} nums
  * @return {number[][]}
  */
-var permute_inplace = function(nums) {
-    const res = [];
+var permute_inPlace = function(nums) {
     const n = nums.length;
+    const res = [];
 
-    const dfs = (first) => {
-        if (first === n) {
+    const backTrack = (startIdx) => {
+        if (startIdx === n) {
             res.push([...nums]);
+            return;
         }
 
-        for (let i = first; i < n; i++) {
-            [nums[first], nums[i]] = [nums[i], nums[first]];
-            dfs(first+1);
-            [nums[first], nums[i]] = [nums[i], nums[first]];
+        for (let i = startIdx; i < n; i++) {
+            [nums[startIdx], nums[i]] = [nums[i], nums[startIdx]];
+            backTrack(startIdx + 1); // startIdx + 1 is the next index to be swapped
+            [nums[startIdx], nums[i]] = [nums[i], nums[startIdx]];
         }
     }
-
-    dfs(0);
+    backTrack(0);
     return res;
 };
+const res = permute_inPlace([1, 2, 3]);
+console.log("res: ", res)
 
 /**
  * @param {number[]} nums
